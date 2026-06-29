@@ -4,6 +4,15 @@ using TankBattle.Classes;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
 
+
+/*
+ 
+    TODO: Рандомайзер снаряжения и "игру"
+ 
+ */
+
+
+
 internal class Program
 {
     private static void Main(string[] args)
