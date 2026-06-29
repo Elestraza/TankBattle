@@ -4,7 +4,6 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Xml.Linq;
 
-
 namespace TankBattle.Classes
 {
     public class Tank
@@ -23,12 +22,33 @@ namespace TankBattle.Classes
             set { _dodge = value; }
         }
 
-        public void GetArmor() { }
-        public void SetArmor() { }
+        private object _armor;
+        public object Armor
+        {
+            get { return _armor; }
+            set { _armor = value; }
+        }
 
-        public void GetWeapon() { }
-        public void SetWeapon() { }
+        private object _weapon;
+        public object Weapon
+        {
+            get { return _weapon; }
+            set { _weapon = value; }
+        }
 
+        private object _ammo;
+        public object Ammo
+        {
+            get { return _ammo; }
+            set { _ammo = value; }
+        }
+
+        public Tank(object armor, object weapon, object ammo)
+        {
+            _armor = armor;
+            _weapon = weapon;
+            _ammo = ammo;
+        }
 
         /*
             Легкий танк - 400 HP, повышенный шанс уклонения (15%);
@@ -46,25 +66,34 @@ namespace TankBattle.Classes
 
     public class LightTank : Tank
     {
-        public LightTank()
+        public LightTank(object armor, object weapon, object ammo)
         {
             HP = 400;
             Dodge = 0.15f;
+            Armor = armor;
+            Weapon = weapon;
+            Ammo = ammo;
         }
     }
     public class MediumTank : Tank
     {
-        public MediumTank()
+        public MediumTank(object armor, object weapon, object ammo)
         {
             HP = 550;
             Dodge = 0.07f;
+            Armor = armor;
+            Weapon = weapon;
+            Ammo = ammo;
         }
     }
     public class HeavyTank : Tank {
-        public HeavyTank()
+        public HeavyTank(object armor, object weapon, object ammo)
         {
             HP = 700;
             Dodge = 0f;
+            Armor = armor;
+            Weapon = weapon;
+            Ammo = ammo;
         }
     }
 }

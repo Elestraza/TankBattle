@@ -20,7 +20,7 @@ namespace TankBattle.Classes
             set { _isAuto = value; }
         }
 
-        public void Reload() { }
+        public virtual void Reload() { }
 
         public virtual void Attack()
         {
