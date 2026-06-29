@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using TankBattle.Classes;
 
 namespace TankBattle.Tanks
 {
-    public class MediumTank : Tank
+    abstract class MediumTank : Tank
     {
-        public MediumTank(object armor, object weapon, object ammo)
+        public MediumTank()
         {
+            MaxHP = 550;
             HP = 550;
-            Dodge = 0.07f;
-            Armor = armor;
-            Weapon = weapon;
-            Ammo = ammo;
+            DodgeChance = 0.07f;
         }
     }
 }

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using TankBattle.Classes;
 
 namespace TankBattle.Tanks
 {
-    public class LightTank : Tank
+    abstract class LightTank : Tank
     {
-        public LightTank(object armor, object weapon, object ammo)
+        public LightTank()
         {
+            MaxHP = 400;
             HP = 400;
-            Dodge = 0.15f;
-            Armor = armor;
-            Weapon = weapon;
-            Ammo = ammo;
+            DodgeChance = 0.15f;
         }
     }
 }

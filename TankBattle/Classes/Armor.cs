@@ -4,15 +4,12 @@ using System.Text;
 
 namespace TankBattle.Classes
 {
-    public class Armor
+    abstract class Armor
     {
-        private float _damageReduction;
-        public float DamageReduction 
-        {
-            get { return _damageReduction; } 
-            set { _damageReduction = value; }
-        }
+        public double Protection { get; protected set; }
 
+        public abstract int ReduceDamage(int damage, Ammo ammo);
+        
         /*
             Катаная гомогенная - базовая 20%;
             Композитная - базовая 15%, защита от кумулятивных снарядов (снижает их урон на 40%);

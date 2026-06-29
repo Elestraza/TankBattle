@@ -4,8 +4,10 @@ using System.Text;
 
 namespace TankBattle.Classes
 {
-    public class Tactics
+    abstract class Tactic
     {
+        public abstract Tank SelectTarget(Tank attacker, List<Tank> enemies);
+
         /*
             Приказ командира - все атакуют цель, которую указал командир команды (меняется каждый ход);
             Охота на лидера - атакуют самый сильный (с максимальным HP) танк;
@@ -16,6 +18,5 @@ namespace TankBattle.Classes
 	            Средний -> легкий,
 	            Легкий -> случайная цель;
          */
-
     }
 }

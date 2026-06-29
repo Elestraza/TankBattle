@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TankBattle.Ammunitions
 {
-    public class AP : Ammo // Бронебойный, игнорирует динамическую защиту
+    class AP : Ammo // Бронебойный, игнорирует динамическую защиту
     {
         public AP()
         {

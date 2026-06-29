@@ -6,48 +6,25 @@ using System.Xml.Linq;
 
 namespace TankBattle.Classes
 {
-    public class Tank
+    abstract class Tank
     {
-        private int _hp;
-        public int HP
-        {
-            get { return _hp; }
-            set { _hp = value; }
-        }
+        public int MaxHP { get; protected set; }
+        public int HP { get; set; }
+        public float DodgeChance { get; protected set; }
 
-        private float _dodge;
-        public float Dodge
-        {
-            get { return _dodge; }
-            set { _dodge = value; }
-        }
+        public Armor Armor { get; set; }
+        public List<Weapon> Weapons { get; set; } = new();
+        public List<Ammo> Ammunition { get; set; } = new();
 
-        private object _armor;
-        public object Armor
-        {
-            get { return _armor; }
-            set { _armor = value; }
-        }
+        public Tactic Strategy { get; set; }
 
-        private object _weapon;
-        public object Weapon
-        {
-            get { return _weapon; }
-            set { _weapon = value; }
-        }
+        public bool IsAlive => HP > 0;
 
-        private object _ammo;
-        public object Ammo
-        {
-            get { return _ammo; }
-            set { _ammo = value; }
-        }
+        public abstract void Attack(List<Tank> enemies);
 
-        public Tank(object armor, object weapon, object ammo)
+        public bool DodgeAttac()
         {
-            this._armor = armor;
-            this._weapon = weapon;
-            this._ammo = ammo;
+            return Random.Shared.NextDouble() < DodgeChance;
         }
 
         /*

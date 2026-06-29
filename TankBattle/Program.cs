@@ -8,12 +8,22 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Team team1 = new Team();
+        team1.Name = "Blue";
+        Team team2 = new Team();
+        team2.Name = "Red";
 
 
-        RWeapon RWp = new RWeapon();
-        LightArmor LArmor = new LightArmor();
-        AP aP = new AP();
-        LightTank LT = new LightTank(LArmor, RWp, aP);
+        while (!team1.IsDefeated && !team2.IsDefeated)
+        {
+            foreach (Tank tank in team1.Tanks.Where(t => t.IsAlive))
+            {
+                tank.Attack(team2.Tanks);
+            }
+            foreach (Tank tank in team2.Tanks.Where(t => t.IsAlive))
+            {
+                tank.Attack(team1.Tanks);
+            }
+        }
     }
 }

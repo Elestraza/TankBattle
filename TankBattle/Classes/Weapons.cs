@@ -4,24 +4,19 @@ using System.Text;
 
 namespace TankBattle.Classes
 {
-    public class Weapon
+    abstract class Weapon
     {
-        private float _aim = 0.65f;
-        public float Aim
-        {
-            get { return _aim; }
-            set { _aim = value; }
-        }
+        public float AccuracyModifier { get; set; }
+
+        public abstract int Shoot(Ammo ammo);
+        public abstract bool CanUse(Ammo ammo);
         
-        private bool _isAuto = false;
-        public bool Auto
-        {
-            get { return _isAuto; }
-            set { _isAuto = value; }
-        }
-
-        public virtual void Reload() { }
-
-        public virtual void Attack() { }
+        /*
+            Нарезное - высокая точность (+10% к шансу попадания), урон 20-30;
+            Гладкоствольное - урон 35-45, обычный шанс попадания;
+            Автоматическое - низная точность (-15% к шансу попадания), 
+                стреляет очередью (по 3 выстрела с уроном 10-15 каждый), 
+                может стрелять только бронебойными и осколочно-фугасными, перезарядка 1 ход;
+        */
     }
 }

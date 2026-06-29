@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TankBattle.Classes;
+﻿using TankBattle.Classes;
 
 namespace TankBattle.Weapons
 {
-    public class SBWeapon : Weapon // Гладкоствольное оружие 
+    class SBWeapon : Weapon // Гладкоствольное оружие 
     {
-        public SBWeapon()
+        public override int Shoot(Ammo ammo)
         {
-            Aim = Aim;
+            return Random.Shared.Next(35, 46) + ammo.Damage;
         }
-        public override void Attack()
-        {
 
+        public override bool CanUse(Ammo ammo)
+        {
+            return true;
         }
     }
 }

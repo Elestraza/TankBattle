@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TankBattle.Ammunitions;
 using TankBattle.Classes;
 
 namespace TankBattle.Weapons
 {
-    public class AWeapon : Weapon // Автоматическое оружие
+    class AWeapon : Weapon // Автоматическое оружие
     {
         public AWeapon()
         {
-            Aim = Aim - 0.15f;
-            Auto = true;
+            AccuracyModifier = -0.15f;
         }
-        public override void Attack()
+
+        public override int Shoot(Ammo ammo)
         {
-            // Attack x3
+            int damage = 0;
+
+            for (int i = 0; i < 3; i++)
+                damage += Random.Shared.Next(10, 16);
+
+            return damage + ammo.Damage;
         }
+
+        public override bool CanUse(Ammo ammo)
+        {
+            return ammo is AP || ammo is HEF;
+        }
+
     }
 }

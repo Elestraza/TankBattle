@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using TankBattle.Classes;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace TankBattle.Ammunition
+namespace TankBattle.Ammunitions
 {
-    public class HEF : Ammo // Осколосно-фугасный
+    class HEF : Ammo // Осколосно-фугасный
     {
         public HEF()
         {
