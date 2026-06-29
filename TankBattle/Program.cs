@@ -1,4 +1,6 @@
 ﻿using TankBattle.Classes;
+using TankBattle.Tanks;
+using TankBattle.Weapons;
 
 internal class Program
 {

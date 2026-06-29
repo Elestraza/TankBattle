@@ -19,8 +19,4 @@ namespace TankBattle.Classes
             Динамическая защита - базовая 20%, шанс 60% отразить кумулятивный снаряд, полностью пробивается бронебойным снарядом;
         */
     }
-
-    public class LightArmor: Armor{ }
-    public class MediumArmor : Armor { }
-    public class HeavyArmor : Armor { }
 }

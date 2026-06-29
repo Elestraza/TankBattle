@@ -11,7 +11,7 @@ namespace TankBattle.Classes
             стреляет очередью (по 3 выстрела с уроном 10-15 каждый), 
             может стрелять только бронебойными и осколочно-фугасными, перезарядка 1 ход;
      */
-    public class Ammunition
+    public class Ammo
     {
         private int _damage;
         public int Damage
@@ -25,28 +25,5 @@ namespace TankBattle.Classes
             return _damage;
         }
 
-    }
-
-    public class HEF : Ammunition // Осколосно-фугасный
-    {
-        public HEF ()
-        {
-            Damage = 5;
-        }
-    }
-    public class AP : Ammunition // Бронебойный, игнорирует динамическую защиту
-    {
-
-        public AP()
-        {
-            Damage = 20;
-        }
-    }
-    public class SC : Ammunition // Кумулятивный, может быть отражен динамической защитой, игнорирует композитную броню
-    {
-        public SC()
-        {
-            Damage = 15;
-        }
     }
 }

@@ -62,38 +62,4 @@ namespace TankBattle.Classes
 	        - боеприпасы (3 вида с разными характеристиками);   
         */
     }
-
-
-    public class LightTank : Tank
-    {
-        public LightTank(object armor, object weapon, object ammo)
-        {
-            HP = 400;
-            Dodge = 0.15f;
-            Armor = armor;
-            Weapon = weapon;
-            Ammo = ammo;
-        }
-    }
-    public class MediumTank : Tank
-    {
-        public MediumTank(object armor, object weapon, object ammo)
-        {
-            HP = 550;
-            Dodge = 0.07f;
-            Armor = armor;
-            Weapon = weapon;
-            Ammo = ammo;
-        }
-    }
-    public class HeavyTank : Tank {
-        public HeavyTank(object armor, object weapon, object ammo)
-        {
-            HP = 700;
-            Dodge = 0f;
-            Armor = armor;
-            Weapon = weapon;
-            Ammo = ammo;
-        }
-    }
 }
