@@ -9,11 +9,11 @@ namespace TankBattle.Armors
     {
         public HRArmor()
         {
-            Protection = 0.20;
+            Protection = 0.20f;
         }
         public override int ReduceDamage(int damage, Ammo ammo)
         {
-            return (int)(damage * (1 - Protection));
+            return (int)(damage * (1f - Protection));
         }
     }
 }

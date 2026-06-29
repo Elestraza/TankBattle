@@ -8,21 +8,23 @@ namespace TankBattle.Armors
     {
         public DinamicArmor()
         {
-            Protection = 0.20;
+            Protection = 0.20f;
         }
 
         public override int ReduceDamage(int damage, Ammo ammo)
         {
-            if (ammo is AP)
-                return damage;
-
-            if (ammo is AP)
+            if (ammo is not AP)
             {
-                if (Random.Shared.NextDouble() < 0.6)
-                    return 0;
+                return (int)(damage * 0.8f);
             }
-
-            return (int)(damage * 0.8);
+            if (ammo is SC) // Если Комулятивный снаряд
+            {
+                if (Random.Shared.NextDouble() < 0.6f) // 60% шанс отразить
+                {
+                    return 0;
+                }
+            }
+            return damage; // Полный урон, если Бронебойный снаряд
         }
     }
 }

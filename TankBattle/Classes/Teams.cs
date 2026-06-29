@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 
 namespace TankBattle.Classes
 {
@@ -9,6 +7,6 @@ namespace TankBattle.Classes
         public string Name { get; set; }
         public List<Tank> Tanks { get; set; } = new();
 
-        public bool IsDefeated => Tanks.All(t => !t.IsAlive);
+        public bool IsDefeated => Tanks.All(tank => !tank.IsAlive); // LINQ выражение, для учета проигрыша, когда все танки команды мертвы, заменяет перебор через for(;;)
     }
 }

@@ -6,7 +6,7 @@ namespace TankBattle.Classes
 {
     abstract class Armor
     {
-        public double Protection { get; protected set; }
+        public float Protection { get; protected set; }
 
         public abstract int ReduceDamage(int damage, Ammo ammo);
         
