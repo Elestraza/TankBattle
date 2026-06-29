@@ -45,9 +45,9 @@ namespace TankBattle.Classes
 
         public Tank(object armor, object weapon, object ammo)
         {
-            _armor = armor;
-            _weapon = weapon;
-            _ammo = ammo;
+            this._armor = armor;
+            this._weapon = weapon;
+            this._ammo = ammo;
         }
 
         /*

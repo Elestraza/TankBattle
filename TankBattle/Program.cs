@@ -1,4 +1,6 @@
-﻿using TankBattle.Classes;
+﻿using TankBattle.Ammunitions;
+using TankBattle.Armors;
+using TankBattle.Classes;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
 
@@ -9,7 +11,7 @@ internal class Program
         Console.WriteLine("Hello, World!");
 
 
-        RWeapons RWp = new RWeapons();
+        RWeapon RWp = new RWeapon();
         LightArmor LArmor = new LightArmor();
         AP aP = new AP();
         LightTank LT = new LightTank(LArmor, RWp, aP);
