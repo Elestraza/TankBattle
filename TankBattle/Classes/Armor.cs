@@ -8,7 +8,7 @@ namespace TankBattle.Classes
     {
         public float Protection { get; protected set; }
 
-        public abstract int ReduceDamage(int damage, Ammo ammo);
+        public abstract Int32 ReduceDamage(Int32 damage, Ammo ammo);
         
         /*
             Катаная гомогенная - базовая 20%;

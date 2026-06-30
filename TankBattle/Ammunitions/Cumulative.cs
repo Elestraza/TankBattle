@@ -6,9 +6,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TankBattle.Ammunitions
 {
-    class SC : Ammo // Кумулятивный, может быть отражен динамической защитой, игнорирует композитную броню
+    class Cumulative : Ammo // Кумулятивный, может быть отражен динамической защитой, игнорирует композитную броню
     {
-        public SC()
+        public Cumulative()
         {
             Damage = 15;
         }

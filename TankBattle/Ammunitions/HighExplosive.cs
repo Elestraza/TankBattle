@@ -5,9 +5,9 @@ using TankBattle.Classes;
 
 namespace TankBattle.Ammunitions
 {
-    class HEF : Ammo // Осколосно-фугасный
+    class HighExplosive : Ammo // Осколосно-фугасный
     {
-        public HEF()
+        public HighExplosive()
         {
             Damage = 5;
         }

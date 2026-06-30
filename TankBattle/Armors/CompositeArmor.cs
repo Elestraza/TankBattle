@@ -11,13 +11,13 @@ namespace TankBattle.Armors
             Protection = 0.15f;
         }
 
-        public override int ReduceDamage(int damage, Ammo ammo)
+        public override Int32 ReduceDamage(Int32 damage, Ammo ammo)
         {
-            if (ammo is SC)
+            if (ammo is Cumulative)
             {
-                damage = (int)(damage * 0.6f);
+                damage = (Int32)(damage * 0.6f);
             }
-            return (int)(damage * (1f - Protection));
+            return (Int32)(damage * (1f - Protection));
         }
     }
 }

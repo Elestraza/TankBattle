@@ -6,9 +6,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TankBattle.Ammunitions
 {
-    class AP : Ammo // Бронебойный, игнорирует динамическую защиту
+    class ArmorPearcing : Ammo // Бронебойный, игнорирует динамическую защиту
     {
-        public AP()
+        public ArmorPearcing()
         {
             Damage = 20;
         }

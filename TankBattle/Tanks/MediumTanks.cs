@@ -7,6 +7,7 @@ namespace TankBattle.Tanks
     {
         public MediumTank()
         {
+            Name = "Средний танк";
             MaxHP = 550;
             HP = 550;
             DodgeChance = 0.07f;

@@ -7,6 +7,6 @@ namespace TankBattle.Classes
     
     abstract class Ammo
     {
-        public int Damage { get; protected set; }
+        public Int32 Damage { get; protected set; }
     }
 }

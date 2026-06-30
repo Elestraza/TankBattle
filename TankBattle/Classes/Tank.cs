@@ -8,23 +8,35 @@ namespace TankBattle.Classes
 {
     abstract class Tank
     {
-        public int MaxHP { get; protected set; }
-        public int HP { get; set; }
+        public String Name { get; set; }
+        public Int32 MaxHP { get; protected set; }
+        public Int32 HP { get; set; }
         public float DodgeChance { get; protected set; }
 
         public Armor Armor { get; set; }
-        public List<Weapon> Weapons { get; set; } = new();
-        public List<Ammo> Ammunition { get; set; } = new();
+        public Weapon Weapons { get; set; }
+        public Ammo Ammunition { get; set; }
 
         public Tactic Strategy { get; set; }
 
-        public bool IsAlive => HP > 0;
+        public Boolean IsAlive => HP > 0;
+
+        public Boolean IsTarget = false;
+
+        public Boolean IsHit = false;
 
         public abstract void Attack(List<Tank> enemies);
 
-        public bool DodgeAttac()
+        public void DodgeAttac()
         {
-            return Random.Shared.NextDouble() < DodgeChance;
+            if (!(Random.Shared.NextDouble() < DodgeChance)) IsHit = true;
+
+        }
+
+        public void HitRegister(Weapon weapon, Ammo ammo, Armor armor, Weapon accuracy, int damage) 
+        {
+            if (IsHit = true)
+                HP = HP - damage;
         }
 
         /*

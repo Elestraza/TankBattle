@@ -6,10 +6,11 @@ namespace TankBattle.Classes
 {
     abstract class Weapon
     {
-        public float AccuracyModifier { get; set; }
+        private readonly Double _accuracy;
+        public Double Accuracy { get; set; }
 
-        public abstract int Shoot(Ammo ammo);
-        public abstract bool CanUse(Ammo ammo);
+        public abstract (int, Double) Shoot(Tank tank,Ammo ammo, Double Accuracy);
+        public abstract Boolean CanUse(Ammo ammo);
         
         /*
             Нарезное - высокая точность (+10% к шансу попадания), урон 20-30;

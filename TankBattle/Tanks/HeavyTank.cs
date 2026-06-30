@@ -7,6 +7,7 @@ namespace TankBattle.Tanks
     {
         public HeavyTank()
         {
+            Name = "Тяжелый танк";
             MaxHP = 700;
             HP = 700;
             DodgeChance = 0f;
