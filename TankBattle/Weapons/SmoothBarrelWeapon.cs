@@ -4,12 +4,6 @@ namespace TankBattle.Weapons
 {
     class SmoothBarrelWeapon : Weapon // Гладкоствольное оружие 
     {
-        public Double Accuracy { get; }
-
-        public SmoothBarrelWeapon(Double Accuracy)
-        {
-            this.Accuracy = Accuracy;
-        }
         public override (int, Double) Shoot(Tank tank, Ammo ammo, Double Accuracy)
         {
 

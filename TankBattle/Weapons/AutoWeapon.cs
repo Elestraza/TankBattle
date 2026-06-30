@@ -5,12 +5,9 @@ namespace TankBattle.Weapons
 {
     class AutoWeapon : Weapon // Автоматическое оружие
     {
-        public Double Accuracy { get; }
-
-        public AutoWeapon(Double Accuracy)
+        public AutoWeapon()
         {
             Accuracy = -0.15f;
-            this.Accuracy = Accuracy;
         }
 
         public override (int, Double) Shoot(Tank tank, Ammo ammo, Double Accuracy)

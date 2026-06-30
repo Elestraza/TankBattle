@@ -3,7 +3,7 @@ using TankBattle.Classes;
 
 namespace TankBattle.Tanks
 {
-    abstract class MediumTank : Tank
+    class MediumTank : Tank
     {
         public MediumTank()
         {
@@ -11,6 +11,10 @@ namespace TankBattle.Tanks
             MaxHP = 550;
             HP = 550;
             DodgeChance = 0.07f;
+        }
+        public override void Attack(List<Tank> enemies)
+        {
+            throw new NotImplementedException();
         }
     }
 }

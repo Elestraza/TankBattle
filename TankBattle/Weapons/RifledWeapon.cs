@@ -4,12 +4,10 @@ namespace TankBattle.Weapons
 {
     class RifledWeapon : Weapon // Нарезное оружие
     {
-        public Double Accuracy { get; }
-
-        public RifledWeapon(float Accuracy)
-        {
-            this.Accuracy = Accuracy;
-        }
+        //public RifledWeapon()
+        //{
+        //    Accuracy = Accuracy;
+        //}
 
         public override (int, Double) Shoot(Tank tank, Ammo ammo, Double Accuracy)
         {

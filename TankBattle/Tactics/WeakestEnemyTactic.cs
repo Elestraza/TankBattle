@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TankBattle.Classes;
+﻿using TankBattle.Classes;
 using System.Linq;
 
 namespace TankBattle.Tactics
@@ -10,7 +7,9 @@ namespace TankBattle.Tactics
     {
         public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
-            return enemies.Where(t => t.IsAlive).OrderBy(t => t.HP).Last(); 
+            var enemy = enemies.Where(t => t.IsAlive).OrderBy(t => t.HP).Last();
+            Console.WriteLine("Танк " + attacker.Name + " атакует Танк " + enemy);
+            return enemy;
         }
     }
 }

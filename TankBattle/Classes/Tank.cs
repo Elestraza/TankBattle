@@ -27,16 +27,17 @@ namespace TankBattle.Classes
 
         public abstract void Attack(List<Tank> enemies);
 
-        public void DodgeAttac()
+        public void DodgeAttack()
         {
-            if (!(Random.Shared.NextDouble() < DodgeChance)) IsHit = true;
-
+            if (!(Random.Shared.NextDouble() < DodgeChance))
+                IsHit = true;
+            else
+                Console.WriteLine("Танк увернулся от попадания");
         }
 
         public void HitRegister(Weapon weapon, Ammo ammo, Armor armor, Weapon accuracy, int damage) 
         {
-            if (IsHit = true)
-                HP = HP - damage;
+            if (IsHit) HP -= damage;
         }
 
         /*

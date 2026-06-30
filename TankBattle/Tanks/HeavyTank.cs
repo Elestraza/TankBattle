@@ -3,7 +3,7 @@ using TankBattle.Classes;
 
 namespace TankBattle.Tanks
 {
-    abstract class HeavyTank : Tank
+    class HeavyTank : Tank
     {
         public HeavyTank()
         {
@@ -11,6 +11,10 @@ namespace TankBattle.Tanks
             MaxHP = 700;
             HP = 700;
             DodgeChance = 0f;
+        }
+        public override void Attack(List<Tank> enemies) 
+        {
+            Strategy.SelectTarget(base, enemies);
         }
     }
 }
