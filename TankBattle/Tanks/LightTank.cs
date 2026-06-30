@@ -14,6 +14,7 @@ namespace TankBattle.Tanks
             MaxWeight = 5000;
             MaxAmmo = Random.Shared.Next(16, 31);
             CurrentAmmo = 0;
+            GunsQuantity = 1;
         }
     }
 }

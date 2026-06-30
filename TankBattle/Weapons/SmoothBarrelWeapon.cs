@@ -12,7 +12,6 @@ namespace TankBattle.Weapons
 
         public override int Shoot(Ammo ammo, Double Accuracy)
         {
-
             return Random.Shared.Next(35, 46) + ammo.Damage;
         }
 

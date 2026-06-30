@@ -21,6 +21,8 @@ namespace TankBattle.Classes
         public List<Ammo> Ammunition { get; set; } = new();
         public Int32 MaxAmmo { get; protected set; }
         public Int32 CurrentAmmo { get; set; }
+
+        public Int32 GunsQuantity { get; protected set; }
         public Tactic Strategy { get; set; }
 
         public Boolean IsAlive => HP > 0;
@@ -30,14 +32,17 @@ namespace TankBattle.Classes
 
         public void Attack(List<Tank> enemies)
         {
-            if (Ammunition.Count > 0)
+            for (int i = 0; i < GunsQuantity; i++)
             {
-                CurrentAmmo--;
-                Strategy.SelectTarget(this, enemies);
-            } else
-            {
-                Console.WriteLine("У Танка " + Name + " кончились снаряды.");
-                RecieveAmmo();
+                if (Ammunition.Count > 0)
+                {
+                    CurrentAmmo--;
+                    Strategy.SelectTarget(this, enemies);
+                } else
+                {
+                    Console.WriteLine("У Танка " + Name + " кончились снаряды.");
+                    RecieveAmmo();
+                }
             }
         }
 

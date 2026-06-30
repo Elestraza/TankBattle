@@ -14,6 +14,10 @@ namespace TankBattle.Weapons
 
         public override int Shoot(Ammo ammo, Double Accuracy)
         {
+            if (!CanUse(ammo))
+            {
+                return 0;
+            }
             if (ReloadTime > 0)
             {
                 ReloadTime = 0;
@@ -33,6 +37,7 @@ namespace TankBattle.Weapons
             }
             ReloadTime = 1;
             return (damage + ammo.Damage);
+
         }
 
         public override bool CanUse(Ammo ammo)

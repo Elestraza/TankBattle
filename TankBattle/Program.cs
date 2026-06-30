@@ -6,19 +6,13 @@ using TankBattle.Tactics;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
 
-
-    
 /*
     TODO: 
         Рандомайзер снаряжения
         Боёвку
-        Тяжелый танк может иметь 2 орудия (стреляет дважды за ход)
-        Доделать перезарядку
         Пополнение патронов
         Переделать тактики (затронет калькуляцию урона)
 */
-
-
 
 internal class Program
 {
@@ -61,7 +55,7 @@ internal class Program
             Weapon randomWeapon = arrayedElements[index.Next(0, arrayedElements.Length)];
             team.Tanks[i].Weapons = randomWeapon;
         }
-        for (int i = 0; i < team.Tanks.Count; i++) // Выдача оружия
+        for (int i = 0; i < team.Tanks.Count; i++) // Выдача боеприпасов
         {
             team.Tanks[i].RecieveAmmo();
         }
@@ -72,9 +66,6 @@ internal class Program
             Armor randomArmor = arrayedElements[index.Next(0, arrayedElements.Length)];
             team.Tanks[i].Armor = randomArmor;
         }
-
-
-        
     }
 
     private static void Main()
