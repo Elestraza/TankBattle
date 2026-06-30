@@ -1,6 +1,7 @@
 ﻿using TankBattle.Ammunitions;
 using TankBattle.Armors;
 using TankBattle.Classes;
+using TankBattle.DamageCalculation;
 using TankBattle.Inventory;
 using TankBattle.Tactics;
 using TankBattle.Tanks;
@@ -40,14 +41,6 @@ internal class Program
 
     public static void GearRandomizer(List<Weapon> weaponsList, List<Ammo> ammoesList, List<Armor> armorsList, List<Tactic> tacticsList,Team team) // выдача снаряжения
     {
-        Random tactIndex = new(tacticsList.Count);
-        Tactic[] arrayedTactics = tacticsList.ToArray();
-        Tactic randomTactic = arrayedTactics[tactIndex.Next(0, arrayedTactics.Length)];
-        for (int i = 0; i < team.Tanks.Count; i++) // Тестовый выбор тактики, в будущем будет изменен
-        {
-            team.Tanks[i].Strategy = randomTactic;
-        }
-
         for (int i = 0; i < team.Tanks.Count; i++) // Выдача оружия
         {
             Random index = new(weaponsList.Count);
@@ -70,13 +63,18 @@ internal class Program
 
     private static void Main()
     {
+        WhereHouse whereHouse = new();
+
+        DamageCalculations damageCalculations = new();
         Team team1 = new()
         {
-            Name = "Blue"
+            Name = "Blue",
+            Strategy = whereHouse.captainOrderTactic
         };
         Team team2 = new()
         {
-            Name = "Red"
+            Name = "Red",
+            Strategy = whereHouse.weakestEnemyTactic
         };
 
 
@@ -87,7 +85,7 @@ internal class Program
         List<Tank> tanksList = [heavyTank, mediumTank, lightTank];
         GetTeam(tanksList, team1, team2);
 
-        WhereHouse whereHouse = new();
+        
         GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team1);
         GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team2);
 
@@ -108,12 +106,12 @@ internal class Program
             foreach (Tank tank in team1.Tanks.Where(t => t.IsAlive))
             {
                 Console.Write(team1.Name + " ");
-                tank.Attack(team2.Tanks);
+                damageCalculations.Attack(tank, team2.Tanks, team1);
             }
             foreach (Tank tank in team2.Tanks.Where(t => t.IsAlive))
             {
                 Console.Write(team2.Name + " ");
-                tank.Attack(team1.Tanks);
+                damageCalculations.Attack(tank, team1.Tanks, team2);
             }
             Console.WriteLine();
         }

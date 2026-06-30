@@ -8,32 +8,36 @@ namespace TankBattle.DamageCalculation
 {
     class DamageCalculations
     {
-
-        /*
-        public void Attack(Tactic strategy, List<Tank> enemies)
+        public void Attack(Tank attacker, List<Tank> enemies, Team team)
         {
-            if (Tank.Ammunition.Count > 0)
+            
+            for (int i = 0; i < attacker.GunsQuantity; i++)
             {
-                CurrentAmmo--;
-                strategy.SelectTarget(this, enemies);
-            } else
-            {
-                Console.WriteLine("У Танка " + Name + " кончились снаряды.");
-                RecieveAmmo();
+                if (attacker.Ammunition.Count > 0)
+                {
+                    attacker.CurrentAmmo--;
+                    var reciever = team.Strategy.SelectTarget(attacker, enemies);
+                    var attackerAmmo = attacker.Ammunition[0];
+                    int damage = attacker.Weapons.Shoot(attacker.Ammunition[0], attacker.Weapons.Accuracy);
+                    HitRegister(reciever, damage, attacker.Ammunition[0]);
+                } else
+                {
+                    Console.WriteLine("У Танка " + attacker.Name + " кончились снаряды.");
+                    attacker.RecieveAmmo();
+                }
             }
         }
 
-        public void HitRegister(int damage, Ammo ammo)
+        public void HitRegister(Tank tank, int damage, Ammo ammo)
         {
-            if (!(Random.Shared.NextDouble() < DodgeChance))
+            if (!(Random.Shared.NextDouble() < tank.DodgeChance))
             {
-                HP -= Armor.ReduceDamage(damage, ammo);
-                Console.WriteLine("Танк " + Name + " получил урон " + damage);
-                if (!IsAlive)
-                    DeathMessage();
+                tank.HP -= tank.Armor.ReduceDamage(damage, ammo);
+                Console.WriteLine("Танк " + tank.Name + " получил урон " + damage);
+                if (!tank.IsAlive)
+                    tank.DeathMessage();
             } else
                 Console.WriteLine("Танк увернулся от попадания");
         }
-        */
     }
 }

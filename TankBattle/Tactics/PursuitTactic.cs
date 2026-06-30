@@ -8,7 +8,7 @@ namespace TankBattle.Tactics
 {
     class PursuitTactic : Tactic
     {
-        public override void SelectTarget(Tank attacker, List<Tank> enemies)
+        public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
             int damage = attacker.Weapons.Shoot(attacker.Ammunition[0], attacker.Weapons.Accuracy);
 
@@ -23,11 +23,11 @@ namespace TankBattle.Tactics
                 Random index = new(enemies.Count);
 
                 Tank[] aliveEnemies = enemies.Where(t => t.IsAlive && t.IsTarget == false).ToArray();
-                Tank randomTank = aliveEnemies[index.Next(0, aliveEnemies.Length)];
+                return aliveEnemies[index.Next(0, aliveEnemies.Length)];
 
-                randomTank.HitRegister(damage, attacker.Ammunition[0]);
+                //randomTank.HitRegister(damage, attacker.Ammunition[0]);
             }
-            enemies.Where(t => t.IsTarget && t.IsAlive == true).First().HitRegister(damage, attacker.Ammunition[0]);
+            return enemies.Where(t => t.IsTarget && t.IsAlive == true).First();//.HitRegister(damage, attacker.Ammunition[0]);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Xml.Linq;
 using TankBattle.Inventory;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TankBattle.Classes
 {
@@ -23,40 +24,40 @@ namespace TankBattle.Classes
         public Int32 CurrentAmmo { get; set; }
 
         public Int32 GunsQuantity { get; protected set; }
-        public Tactic Strategy { get; set; }
 
         public Boolean IsAlive => HP > 0;
 
         public Boolean IsTarget = false;
-        
 
-        public void Attack(List<Tank> enemies)
-        {
-            for (int i = 0; i < GunsQuantity; i++)
-            {
-                if (Ammunition.Count > 0)
-                {
-                    CurrentAmmo--;
-                    Strategy.SelectTarget(this, enemies);
-                } else
-                {
-                    Console.WriteLine("У Танка " + Name + " кончились снаряды.");
-                    RecieveAmmo();
-                }
-            }
-        }
 
-        public void HitRegister(int damage, Ammo ammo) 
-        {
-            if (!(Random.Shared.NextDouble() < DodgeChance))
-            {
-                HP -= Armor.ReduceDamage(damage, ammo);
-                Console.WriteLine("Танк " + Name + " получил урон " + damage);
-                if (!IsAlive)
-                    DeathMessage();
-            } else
-                Console.WriteLine("Танк увернулся от попадания");
-        }
+        //public void Attack(Tactic strategy, List<Tank> enemies)
+        //{
+        //    for (int i = 0; i < GunsQuantity; i++)
+        //    {
+        //        if (Ammunition.Count > 0)
+        //        {
+        //            CurrentAmmo--;
+        //            var enemy = strategy.SelectTarget(this, enemies);
+        //            enemy.HitRegister(damage, attacker.Ammunition[0]);
+        //        } else
+        //        {
+        //            Console.WriteLine("У Танка " + Name + " кончились снаряды.");
+        //            RecieveAmmo();
+        //        }
+        //    }
+        //}
+
+        //public void HitRegister(int damage, Ammo ammo)
+        //{
+        //    if (!(Random.Shared.NextDouble() < DodgeChance))
+        //    {
+        //        HP -= Armor.ReduceDamage(damage, ammo);
+        //        Console.WriteLine("Танк " + Name + " получил урон " + damage);
+        //        if (!IsAlive)
+        //            DeathMessage();
+        //    } else
+        //        Console.WriteLine("Танк увернулся от попадания");
+        //}
 
         public void DeathMessage()
         {
