@@ -14,7 +14,7 @@ namespace TankBattle.Tanks
         }
         public override void Attack(List<Tank> enemies) 
         {
-            Strategy.SelectTarget(base, enemies);
+            Strategy.SelectTarget(this, enemies);
         }
     }
 }

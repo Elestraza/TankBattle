@@ -14,7 +14,7 @@ namespace TankBattle.Tanks
         }
         public override void Attack(List<Tank> enemies)
         {
-            throw new NotImplementedException();
+            Strategy.SelectTarget(this, enemies);
         }
     }
 }
