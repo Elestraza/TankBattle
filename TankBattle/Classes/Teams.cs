@@ -8,7 +8,7 @@ namespace TankBattle.Classes
         public List<Tank> Tanks { get; set; } = [];
         public Tactic Strategy { get; set; }
         public Boolean IsDefeated => Tanks.All(tank => !tank.IsAlive); // LINQ выражение, для учета проигрыша, когда все танки команды мертвы, заменяет перебор через for
-        Tanks[].Attack(Tactic strategy, List<Tank> enemies);
+        
         public void LooseMsg()
         {
             if (IsDefeated)

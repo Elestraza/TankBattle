@@ -15,6 +15,7 @@ using TankBattle.Weapons;
         Тяжелый танк может иметь 2 орудия (стреляет дважды за ход)
         Доделать перезврядку
         Пополнение патронов
+        Переделать тактики (заьронет калькуляцию урона)
 */
 
 
@@ -43,8 +44,16 @@ internal class Program
         }
     }
 
-    public static void GearRandomizer(List<Weapon> weaponsList, List<Ammo> ammoesList, List<Armor> armorsList, Team team) // выдача снаряжения
+    public static void GearRandomizer(List<Weapon> weaponsList, List<Ammo> ammoesList, List<Armor> armorsList, List<Tactic> tacticsList,Team team) // выдача снаряжения
     {
+        Random tactIndex = new(tacticsList.Count);
+        Tactic[] arrayedTactics = tacticsList.ToArray();
+        Tactic randomTactic = arrayedTactics[tactIndex.Next(0, arrayedTactics.Length)];
+        for (int i = 0; i < team.Tanks.Count; i++) // Тестовый выбор тактики, в будущем будет изменен
+        {
+            team.Tanks[i].Strategy = randomTactic;
+        }
+
         for (int i = 0; i < team.Tanks.Count; i++) // Выдача оружия
         {
             Random index = new(weaponsList.Count);
@@ -63,6 +72,9 @@ internal class Program
             Armor randomArmor = arrayedElements[index.Next(0, arrayedElements.Length)];
             team.Tanks[i].Armor = randomArmor;
         }
+
+
+        
     }
 
     private static void Main()
@@ -85,8 +97,8 @@ internal class Program
         GetTeam(tanksList, team1, team2);
 
         WhereHouse whereHouse = new();
-        GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, team1);
-        GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, team2);
+        GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team1);
+        GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team2);
         /*team1.Tanks[0].Name = "Игрок 1";
         team1.Tanks[0].Strategy = heathiestEnemyTactic;
         team1.Tanks[0].Weapons = sbw;
@@ -99,14 +111,29 @@ internal class Program
         team2.Tanks[0].Armor = rolledHomogeneous;
         team2.Tanks[0].RecieveAmmo();
         */
+
+        Console.WriteLine("Команда " + team1.Name);
+        foreach (Tank tank in team1.Tanks.Where(t => t.IsAlive))
+        {
+            Console.WriteLine(tank.Name);
+        }
+        Console.WriteLine("Команда " + team2.Name);
+        foreach (Tank tank in team2.Tanks.Where(t => t.IsAlive))
+        {
+            Console.WriteLine(tank.Name);
+        }
+
+        Console.WriteLine("_____________________БОЙ_____________________");
         while (!team1.IsDefeated && !team2.IsDefeated)
         { 
             foreach (Tank tank in team1.Tanks.Where(t => t.IsAlive))
             {
+                Console.Write(team1.Name + " ");
                 tank.Attack(team2.Tanks);
             }
             foreach (Tank tank in team2.Tanks.Where(t => t.IsAlive))
             {
+                Console.Write(team2.Name + " ");
                 tank.Attack(team1.Tanks);
             }
             Console.WriteLine();

@@ -28,12 +28,12 @@ namespace TankBattle.Classes
         public Boolean IsTarget = false;
         
 
-        public void Attack(Tactic strategy, List<Tank> enemies)
+        public void Attack(List<Tank> enemies)
         {
             if (Ammunition.Count > 0)
             {
                 CurrentAmmo--;
-                strategy.SelectTarget(this, enemies);
+                Strategy.SelectTarget(this, enemies);
             } else
             {
                 Console.WriteLine("У Танка " + Name + " кончились снаряды.");

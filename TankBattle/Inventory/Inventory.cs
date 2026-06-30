@@ -4,6 +4,7 @@ using System.Text;
 using TankBattle.Ammunitions;
 using TankBattle.Armors;
 using TankBattle.Classes;
+using TankBattle.Tactics;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
 
@@ -23,9 +24,16 @@ namespace TankBattle.Inventory
         public DinamicArmor dinamicArmor { get; set; } = new();
         public RolledHomogeneous homogeneous { get; set; } = new();
 
+        public CaptainOrderTactic captainOrderTactic { get; set; } = new();
+        public HeathiestEnemyTactic heathiestEnemyTactic { get; set; } = new();
+        public PursuitTactic pursuitTactic { get; set; } = new();
+        public TypePriorityTactic typePriorityTactic { get; set; } = new();
+        public WeakestEnemyTactic weakestEnemyTactic{ get; set; } = new();
+
         public List<Weapon> Weapons { get; set; } = new(); // [autoWeapon, rifledWeapon, smoothBarrelWeapon];
         public List<Ammo> Ammos { get; set; } = new(); // [armorPearcing, cumulative, highExplosive];
         public List<Armor> Armors { get; set; } =  new(); // [compositeArmor, dinamicArmor, homogeneous];
+        public List<Tactic> Tactics { get; set; } = new();
 
         public WhereHouse() 
         {
@@ -40,6 +48,14 @@ namespace TankBattle.Inventory
             CompositeArmor compositeArmor = new();
             DinamicArmor dinamicArmor = new();
             RolledHomogeneous homogeneous = new();
+
+            CaptainOrderTactic captainOrderTactic = new(); // Тестовый вариант
+            HeathiestEnemyTactic heathiestEnemyTactic = new();
+            PursuitTactic pursuitTactic = new();
+            TypePriorityTactic typePriorityTactic = new();
+            WeakestEnemyTactic weakestEnemyTactic = new();
+            Tactics = [captainOrderTactic, heathiestEnemyTactic, pursuitTactic, typePriorityTactic, weakestEnemyTactic];
+      
 
             Weapons = [autoWeapon, rifledWeapon, smoothBarrelWeapon];
             Ammos = [armorPearcing, cumulative, highExplosive];
