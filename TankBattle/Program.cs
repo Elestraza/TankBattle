@@ -90,18 +90,6 @@ internal class Program
         WhereHouse whereHouse = new();
         GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team1);
         GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, whereHouse.Tactics, team2);
-        /*team1.Tanks[0].Name = "Игрок 1";
-        team1.Tanks[0].Strategy = heathiestEnemyTactic;
-        team1.Tanks[0].Weapons = sbw;
-        team1.Tanks[0].Armor = dinamicArmor;
-        team1.Tanks[0].RecieveAmmo();
-
-        team2.Tanks[0].Name = "Игрок 2";
-        team2.Tanks[0].Strategy = heathiestEnemyTactic;
-        team2.Tanks[0].Weapons = sbw;
-        team2.Tanks[0].Armor = rolledHomogeneous;
-        team2.Tanks[0].RecieveAmmo();
-        */
 
         Console.WriteLine("Команда " + team1.Name);
         foreach (Tank tank in team1.Tanks.Where(t => t.IsAlive))
