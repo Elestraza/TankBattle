@@ -11,10 +11,9 @@ namespace TankBattle.Tanks
             MaxHP = 550;
             HP = 550;
             DodgeChance = 0.07f;
-        }
-        public override void Attack(List<Tank> enemies)
-        {
-            Strategy.SelectTarget(this, enemies);
-        }
+            MaxWeight = 10000;
+            MaxAmmo = Random.Shared.Next(16, 31);
+            CurrentAmmo = 0;
+        }   
     }
 }

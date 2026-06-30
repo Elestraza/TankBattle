@@ -1,5 +1,6 @@
 ﻿using TankBattle.Ammunitions;
 using TankBattle.Classes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TankBattle.Weapons
 {
@@ -8,24 +9,30 @@ namespace TankBattle.Weapons
         public AutoWeapon()
         {
             Accuracy = -0.15f;
+            ReloadTime = 1;
         }
 
-        public override (int, Double) Shoot(Tank tank, Ammo ammo, Double Accuracy)
+        public override int Shoot(Ammo ammo, Double Accuracy)
         {
+            if (ReloadTime > 0)
+            {
+                ReloadTime = 0;
+                return 0;
+            }
             Int32 damage = 0;
 
             for (Int32 i = 0; i < 3; i++)
             {
-                if (Random.Shared.NextDouble() < Accuracy)    
+                if (Random.Shared.NextDouble() < Accuracy)
                 {
                     damage += Random.Shared.Next(10, 16);
-                }
-                else
+                } else
                 {
                     Console.WriteLine("Выстрел " + i + " промазал.");
                 }
             }
-            return ((damage + ammo.Damage), Accuracy);
+            ReloadTime = 1;
+            return (damage + ammo.Damage);
         }
 
         public override bool CanUse(Ammo ammo)

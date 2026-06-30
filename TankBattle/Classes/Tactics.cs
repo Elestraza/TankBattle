@@ -6,7 +6,7 @@ namespace TankBattle.Classes
 {
     abstract class Tactic
     {
-        public abstract Tank SelectTarget(Tank attacker, List<Tank> enemies);
+        public abstract void SelectTarget(Tank attacker, List<Tank> enemies);
 
         /*
             Приказ командира - все атакуют цель, которую указал командир команды (меняется каждый ход);
