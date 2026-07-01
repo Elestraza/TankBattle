@@ -5,16 +5,16 @@ namespace TankBattle.Weapons
 {
     class RifledWeapon : Weapon // Нарезное оружие
     {
-        public RifledWeapon()
-        {
-            ReloadTime = 0;
-        }
+        public Double Accuracy => Accuracy + (Accuracy * 0.10f);
 
-        public override int Shoot(Ammo ammo, Double Accuracy)
+        public override int Shoot(Tank attacker, Double Accuracy)
         {
             if (Random.Shared.NextDouble() > Accuracy)
+            { 
                 Console.WriteLine("Промазал");
-            return Random.Shared.Next(20, 31) + ammo.Damage;
+                return 0;
+            }
+            return Random.Shared.Next(20, 31) + attacker.Ammunition[0].Damage;
         }
 
         public override bool CanUse(Ammo ammo)

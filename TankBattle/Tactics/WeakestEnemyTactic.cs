@@ -10,7 +10,7 @@ namespace TankBattle.Tactics
         {
             
             var enemy = enemies.Where(t => t.IsAlive).OrderBy(t => t.HP).Last();
-            Console.WriteLine("Танк " + attacker.Name + " атакует Танк " + enemy.Name);
+            Console.WriteLine(attacker.Name + " атакует Танк " + enemy.Name);
             return enemy;
         }
     }

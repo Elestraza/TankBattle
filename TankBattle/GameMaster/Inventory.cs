@@ -8,33 +8,15 @@ using TankBattle.Tactics;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
 
-namespace TankBattle.Inventory
+namespace TankBattle.GameMaster
 {
     class WhereHouse
     {
-        public AutoWeapon autoWeapon { get; set; } = new();
-        public RifledWeapon rifledWeapon { get; set; } = new();
-        public SmoothBarrelWeapon smoothBarrelWeapon { get; set; } = new();
-
-        public ArmorPearcing armorPearcing { get; set; } = new();
-        public Cumulative cumulative { get; set; } = new();
-        public HighExplosive highExplosive { get; set; } = new();
-
-        public CompositeArmor compositeArmor { get; set; } = new();
-        public DinamicArmor dinamicArmor { get; set; } = new();
-        public RolledHomogeneous homogeneous { get; set; } = new();
-
-        public CaptainOrderTactic captainOrderTactic { get; set; } = new();
-        public HeathiestEnemyTactic heathiestEnemyTactic { get; set; } = new();
-        public PursuitTactic pursuitTactic { get; set; } = new();
-        public TypePriorityTactic typePriorityTactic { get; set; } = new();
-        public WeakestEnemyTactic weakestEnemyTactic{ get; set; } = new();
-
         public List<Weapon> Weapons { get; set; } = new(); // [autoWeapon, rifledWeapon, smoothBarrelWeapon];
         public List<Ammo> Ammos { get; set; } = new(); // [armorPearcing, cumulative, highExplosive];
-        public List<Armor> Armors { get; set; } =  new(); // [compositeArmor, dinamicArmor, homogeneous];
+        public List<Armor> Armors { get; set; } = new(); // [compositeArmor, dinamicArmor, homogeneous];
         public List<Tactic> Tactics { get; set; } = new();
-
+        public List<String> TeamNames { get; set; } = new();
         public WhereHouse() 
         {
             AutoWeapon autoWeapon = new();
@@ -55,8 +37,8 @@ namespace TankBattle.Inventory
             TypePriorityTactic typePriorityTactic = new();
             WeakestEnemyTactic weakestEnemyTactic = new();
             Tactics = [captainOrderTactic, heathiestEnemyTactic, pursuitTactic, typePriorityTactic, weakestEnemyTactic];
-      
 
+            TeamNames = ["СССР", "США", "Китай", "Япония", "Парагвай", "Британия"];
             Weapons = [autoWeapon, rifledWeapon, smoothBarrelWeapon];
             Ammos = [armorPearcing, cumulative, highExplosive];
             Armors = [compositeArmor, dinamicArmor, homogeneous];
@@ -71,12 +53,19 @@ namespace TankBattle.Inventory
 
             for (int i = 0; i < quantity; i++)
             {
-                Random index = new(ammos.Count);
+                if (reciever.Weight < reciever.MaxWeight)
+                {
+                    Random index = new(ammos.Count);
 
-                Ammo[] aliveEnemies = ammos.ToArray();
-                Ammo selectedAmmo = aliveEnemies[index.Next(0, aliveEnemies.Length)];
-                reciever.Ammunition.Add(selectedAmmo);
-                reciever.CurrentAmmo++;
+                    Ammo[] aliveEnemies = ammos.ToArray();
+                    Ammo selectedAmmo = aliveEnemies[index.Next(0, aliveEnemies.Length)];
+                    reciever.Ammunition.Add(selectedAmmo);
+                    reciever.Weight += selectedAmmo.AmmoWeight;
+                } else
+                {
+                    Console.WriteLine("Превышенна допустимая масса танка.");
+                    break;
+                }
             }
         }
     }

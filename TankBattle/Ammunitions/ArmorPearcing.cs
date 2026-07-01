@@ -11,6 +11,7 @@ namespace TankBattle.Ammunitions
         public ArmorPearcing()
         {
             Damage = 20;
+            AmmoWeight = 100;
         }
     }
 }

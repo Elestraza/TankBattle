@@ -11,7 +11,7 @@ namespace TankBattle.Armors
             Protection = 0.20f;
         }
 
-        public override Int32 ReduceDamage(Int32 damage, Ammo ammo)
+        public override Double ReduceDamage(Double damage, Ammo ammo)
         {
             if (ammo is not ArmorPearcing)
             {

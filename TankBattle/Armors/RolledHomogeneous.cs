@@ -11,9 +11,9 @@ namespace TankBattle.Armors
         {
             Protection = 0.20f;
         }
-        public override Int32 ReduceDamage(Int32 damage, Ammo ammo)
+        public override Double ReduceDamage(Double damage, Ammo ammo)
         {
-            return (Int32)(damage * (1f - Protection));
+            return (Double)(damage * (1f - Protection));
         }
     }
 }

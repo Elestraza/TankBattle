@@ -11,6 +11,7 @@ namespace TankBattle.Ammunitions
         public Cumulative()
         {
             Damage = 15;
+            AmmoWeight = 400;
         }
     }
 }

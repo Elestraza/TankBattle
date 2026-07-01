@@ -10,6 +10,7 @@ namespace TankBattle.Ammunitions
         public HighExplosive()
         {
             Damage = 5;
+            AmmoWeight = 250;
         }
     }
 }
