@@ -53,7 +53,7 @@ namespace TankBattle.GameMaster
                 }
                 for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача боеприпасов
                 {
-                    teamsList[i].Tanks[i].RecieveAmmo();
+                    teamsList[i].Tanks[j].RecieveAmmo();
                 }
                 for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача брони
                 {
