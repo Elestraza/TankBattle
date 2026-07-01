@@ -12,7 +12,6 @@ using System.Linq;
     TODO: 
         Создать возможность одновременной игры более чем двумя командами
         Перенести логику в BattleSimulator.cs
-        Изменить MaxAmmo в наследуемых классах Tank
         Null DamageHolder внутри DamageList
 */
 
