@@ -12,7 +12,7 @@ namespace TankBattle.Tanks
             HP = 700;
             DodgeChance = 0f;
             MaxWeight = 15000;
-            GunsQuantity = Random.Shared.Next(1, 2);
+            GunsQuantity = Random.Shared.Next(1, 3);
         }
         
     }
