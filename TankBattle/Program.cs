@@ -17,22 +17,9 @@ using System.Linq;
 
 internal class Program
 {
-    public static Int32 roundCounter = 1;
-    public static Int32 maxRounds = 100;
-
-    private static String GameOver(List<Team> aliveTeams)
-    {
-        if (aliveTeams.Count > 0 && roundCounter == maxRounds)
-        {
-            return "НИЧЬЯ ПО ОКОНЧАНИЮ ИГРОВОЙ СЕССИИ!";
-        }
-        else
-        {
-            return "ПОБЕДИЛА КОМАНДА " + aliveTeams.First().Name;
-        }
-    }
     private static void Main()
     {
+        BattleSimulator battleSimulator = new BattleSimulator();
         WhereHouse whereHouse = new();
 
         DamageCalculations damageCalculations = new();
@@ -44,13 +31,13 @@ internal class Program
         LightTank lightTank = new();
 
         List<Tank> tanksList = [heavyTank, mediumTank, lightTank];
-        AliveTeams teamsList = new();
+        List<Team> teamsList = new();
         Int32 teamCapasity = Random.Shared.Next(1, 6);
         Int32 teamQuantity = Convert.ToInt32(Console.ReadLine());
-        teamCreator.GetTeam(tanksList, teamCapasity, teamsList.Teams, teamQuantity);
-        teamCreator.GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, teamsList.Teams);
+        teamCreator.GetTeam(tanksList, teamCapasity, teamsList, teamQuantity);
+        teamCreator.GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, teamsList);
 
-        foreach (Team team in teamsList.Teams)
+        foreach (Team team in teamsList)
         {
             Console.WriteLine("Команда " + team.Name);
             foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
@@ -60,31 +47,10 @@ internal class Program
         }
 
         Console.WriteLine("____________________БОЙ___________________");
-        List<Team> aliveTeams = new();
-        aliveTeams.AddRange(from team in teamsList.Teams.Where(t => !t.IsDefeated)
+        AliveTeams aliveTeams = new AliveTeams();
+        aliveTeams.Teams.AddRange(from team in teamsList.Where(t => !t.IsDefeated)
                             select team);
-        while (aliveTeams.Count > 0 && roundCounter < maxRounds)
-        {
-            DamageHolder damageHolder = new DamageHolder();
-            List<DamageHolder> damageList = new List<DamageHolder>();
-            Console.WriteLine("___________________Ход " + roundCounter + "__________________");
-            foreach (Team team in teamsList.Teams)
-            {
-                foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
-                {
-                    Console.Write(team.Name + " ");
-                    damageCalculations.Attack(tank, team.Tanks, team, damageHolder);
-                    //damageList.Add(damageCalculations.Attack(tank, team1.Tanks, team2));
-                }
-                
-            }
-            Console.WriteLine("___________________УРОН___________________");
-            if (damageHolder != null)
-            damageList.Add(damageHolder);
-            damageCalculations.ApplyDamage(damageList);
-            Console.WriteLine("__________________________________________");
-            roundCounter++;
-        }
-        Console.WriteLine(GameOver(aliveTeams));
+        Console.WriteLine(aliveTeams.Teams);
+        battleSimulator.Game(aliveTeams);
     }
 }
