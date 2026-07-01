@@ -43,7 +43,7 @@ namespace TankBattle.GameMaster
         {
             for (Int32 i = 0; i < teamsList.Count; i++)
             {
-                for (Int32 j = 0; i < teamsList[i].Tanks.Count; j++) // Выдача оружия
+                for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача оружия
                 {
                     Random index = new(weaponsList.Count);
                     Weapon[] arrayedElements = weaponsList.ToArray();
