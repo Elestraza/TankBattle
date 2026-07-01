@@ -15,14 +15,13 @@ namespace TankBattle.GameMaster
         {
             for (int i = 0; i < damageList.Count; i++)
             {
-                if (damageList[i].Reciever.IsAlive)
+                if (!damageList[i].Reciever.IsAlive || damageList[i].RecievingDamage == 0)
+                {
+                    damageList[i].Reciever.HitRegister(0);
+                } else
                 {
                     var recievedDamage = damageList[i].Reciever.Armor.ReduceDamage(damageList[i].RecievingDamage, damageList[i].AttackerAmmo);
                     damageList[i].Reciever.HitRegister(recievedDamage);
-                }
-                else
-                {
-                    damageList[i].Reciever.HitRegister(0);
                 }
             }
         }
