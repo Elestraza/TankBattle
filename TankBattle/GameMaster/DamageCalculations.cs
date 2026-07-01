@@ -8,7 +8,6 @@ namespace TankBattle.GameMaster
 {
     class DamageCalculations
     {
-        
         public void ApplyDamage(List<DamageHolder> damageList)
         {
             if (damageList == null)

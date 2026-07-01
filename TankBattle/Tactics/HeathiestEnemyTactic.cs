@@ -9,7 +9,6 @@ namespace TankBattle.Tactics
     {
         public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
-            //int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
             return enemies.Where(t => t.IsAlive).OrderBy(t => t.HP).Last();
         }
     }

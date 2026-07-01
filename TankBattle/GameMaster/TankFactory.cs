@@ -10,7 +10,7 @@ namespace TankBattle.GameMaster
     {
         public Tank CreateRandomTank()
         {
-            Int32 type = Random.Shared.Next(3);   // 0=Heavy, 1=Medium, 2=Light
+            Int32 type = Random.Shared.Next(3);
             return type switch
             {
                 0 => new HeavyTank(),

@@ -44,25 +44,25 @@ namespace TankBattle.GameMaster
             Armors = [compositeArmor, dinamicArmor, homogeneous];
         }
 
-        public Weapon CreateRandomWeapon()
+        public Weapon GetRandomWeapon()
         {
             Type weaponType = Weapons[Random.Shared.Next(Weapons.Count)].GetType();
             return (Weapon)Activator.CreateInstance(weaponType);
         }
 
-        public Armor CreateRandomArmor()
+        public Armor GetRandomArmor()
         {
             Type armorType = Armors[Random.Shared.Next(Armors.Count)].GetType();
             return (Armor)Activator.CreateInstance(armorType);
         }
 
-        public Ammo CreateRandomAmmo()
+        public Ammo GetRandomAmmo()
         {
             Type ammoType = Ammos[Random.Shared.Next(Ammos.Count)].GetType();
             return (Ammo)Activator.CreateInstance(ammoType);
         }
 
-        public Tactic CreateRandomTactic()
+        public Tactic GetRandomTactic()
         {
             Type tacticType = Tactics[Random.Shared.Next(Tactics.Count)].GetType();
             return (Tactic)Activator.CreateInstance(tacticType);

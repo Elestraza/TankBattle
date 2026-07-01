@@ -15,7 +15,7 @@ namespace TankBattle.GameMaster
             {
                 Team team = new Team();
                 availableTanks.Shuffle();
-                Random random = new Random();
+
                 for (Int32 j = 0; j < teamCapacity && availableTanks.Count > 0; j++)
                 {
                     Tank newTank = tankFactory.CreateRandomTank();
@@ -24,15 +24,9 @@ namespace TankBattle.GameMaster
                 }
 
                 WhereHouse whereHouse = new WhereHouse();
-                Tactic[] tactics = whereHouse.Tactics.ToArray();
-                Tactic randomTactic = tactics[random.Next(tactics.Length)];
-                team.Strategy = randomTactic;
 
-                String[] names = whereHouse.TeamNames.ToArray();
-                names.Shuffle();
-                String randomName = names[random.Next(names.Length)];
-                whereHouse.TeamNames.Remove(randomName);
-                team.Name = randomName;
+                team.Strategy = whereHouse.GetRandomTactic();
+                team.Name = whereHouse.GetRandomTeamName();
 
                 teamsList.Add(team);
             }
@@ -40,15 +34,12 @@ namespace TankBattle.GameMaster
 
         public void GearRandomizer(List<Weapon> weaponsList, List<Ammo> ammoesList, List<Armor> armorsList, List<Team> teamsList) // выдача снаряжения
         {
+            WhereHouse whereHouse = new WhereHouse();
             for (Int32 i = 0; i < teamsList.Count; i++)
             {
                 for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача оружия
                 {
-                    Random index = new(weaponsList.Count);
-                    Weapon[] arrayedElements = weaponsList.ToArray();
-                    weaponsList.Shuffle();
-                    Weapon randomWeapon = arrayedElements[index.Next(0, arrayedElements.Length)];
-                    teamsList[i].Tanks[j].Weapons = randomWeapon;
+                    teamsList[i].Tanks[j].Weapons = whereHouse.GetRandomWeapon();
                 }
                 for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача боеприпасов
                 {
@@ -56,11 +47,7 @@ namespace TankBattle.GameMaster
                 }
                 for (Int32 j = 0; j < teamsList[i].Tanks.Count; j++) // Выдача брони
                 {
-                    Random index = new(armorsList.Count);
-                    Armor[] arrayedElements = armorsList.ToArray();
-                    armorsList.Shuffle();
-                    Armor randomArmor = arrayedElements[index.Next(0, arrayedElements.Length)];
-                    teamsList[i].Tanks[j].Armor = randomArmor;
+                    teamsList[i].Tanks[j].Armor = whereHouse.GetRandomArmor();
                 }
             }
         }
