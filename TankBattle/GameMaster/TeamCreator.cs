@@ -19,7 +19,7 @@ namespace TankBattle.GameMaster
                 for (Int32 j = 0; j < teamCapacity && availableTanks.Count > 0; j++)
                 {
                     Tank newTank = tankFactory.CreateRandomTank();
-                    newTank.Name = "Танк" + (i+1) + "-" + (j+1);
+                    newTank.Name = $"Танк  {i+1} - {j+1}";
                     team.Tanks.Add(newTank);
                 }
 

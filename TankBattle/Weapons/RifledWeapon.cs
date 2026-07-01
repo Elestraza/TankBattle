@@ -11,7 +11,7 @@ namespace TankBattle.Weapons
         {
             if (Random.Shared.NextDouble() > Accuracy)
             { 
-                Console.WriteLine("Промазал");
+                Console.WriteLine("Промазал.");
                 return 0;
             }
             return Random.Shared.Next(20, 31) + attacker.Ammunition[0].Damage;

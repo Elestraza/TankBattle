@@ -9,7 +9,12 @@ namespace TankBattle.GameMaster
     {
         private static String GameOver(List<Team> aliveTeams)
         {
-            return "ПОБЕДИЛА КОМАНДА " + aliveTeams.First().Name;
+            if (aliveTeams == null || aliveTeams.Count == 0)
+            {
+                return "НИЧЬЯ! Танки всех команд уничтожены!";
+            }
+
+            return $"ПОБЕДИЛА КОМАНДА {aliveTeams.First().Name}!";
         }
         public void Game(AliveTeams aliveTeams)
         {
@@ -19,15 +24,13 @@ namespace TankBattle.GameMaster
             {
                 DamageHolder damageHolder = new DamageHolder();
                 List<DamageHolder> damageList = new List<DamageHolder>();
-                Console.WriteLine("___________________Ход " + roundCounter + "__________________");
+                Console.WriteLine($"___________________Ход {roundCounter}__________________");
                 foreach (Team team in aliveTeams.Teams)
                 {
                     foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
                     {
-                        
-                        Console.Write(team.Name + " ");
+                        Console.Write($"{team.Name} ");
                         damageHolder = damageCalculations.Attack(tank, team.Tanks, team);
-                        //damageList.Add(damageCalculations.Attack(tank, team1.Tanks, team2));
                         if (damageHolder != null)
                             damageList.Add(damageHolder);
                     }

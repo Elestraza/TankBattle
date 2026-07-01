@@ -71,7 +71,7 @@ namespace TankBattle.GameMaster
         public String GetRandomTeamName()
         {
             if (TeamNames.Count == 0)
-                return "Команда " + Random.Shared.Next(100, 999);
+                return $"Команда {Random.Shared.Next(100, 999)}";
 
             int index = Random.Shared.Next(TeamNames.Count);
             String name = TeamNames[index];
@@ -91,7 +91,7 @@ namespace TankBattle.GameMaster
             for (Int32 i = 0; i < quantity; i++)
             {
                 if (receiver.Weight >= receiver.MaxWeight)
-                    break;   // больше места нет
+                    break;
 
                 Ammo chosen = availableAmmo[Random.Shared.Next(availableAmmo.Count)];
                 receiver.Ammunition.Add(chosen);

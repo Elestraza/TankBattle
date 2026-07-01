@@ -33,18 +33,17 @@ namespace TankBattle.Classes
             if (!(Random.Shared.NextDouble() < DodgeChance))
             {
                 HP -= damage;
-                Console.Write(Name + " получил урон " + damage + " | ");
-                Console.WriteLine(" HP: " + HP);
+                Console.Write($"{Name} получил урон {damage} | ");
+                Console.WriteLine($"HP: {HP}");
                 if (!IsAlive)
-                    Console.WriteLine(Name + " уничтожен");
-                //DeathMessage();
+                    DeathMessage();
             } else
-                Console.WriteLine(Name + " увернулся от попадания");
+                Console.WriteLine($"{Name} увернулся от попадания");
         }
 
         public void DeathMessage()
         {
-            Console.WriteLine(Name + " уничтожен");
+            Console.WriteLine($"{Name} уничтожен");
         }
 
         public void RecieveAmmo()
@@ -52,7 +51,7 @@ namespace TankBattle.Classes
             WhereHouse inventory = new();
             Int32 added = inventory.GiveAmmo(this, inventory.Ammos, int.MaxValue);
             if (added == 0)
-                Console.WriteLine(Name + " полностью заряжен.");
+                Console.WriteLine($"{Name} полностью заряжен.");
         }
     }
 }

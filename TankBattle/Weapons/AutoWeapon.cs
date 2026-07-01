@@ -19,37 +19,40 @@ namespace TankBattle.Weapons
                 return 0;
             }
 
-            Ammo currentAmmo = attacker.Ammunition.First();
-
-            if (!CanUse(currentAmmo))
-            {
-                Console.WriteLine($"{attacker.Name} - Осечка! Снаряд {currentAmmo.GetType().Name} не подходит.");
-                attacker.Ammunition.RemoveAt(0);
-                attacker.Weight -= currentAmmo.AmmoWeight;
-                return 0;
-            }
-
-            if (ReloadTime > 0)
-            {
-                Console.WriteLine($"{attacker.Name} - Перезарядка");
-                ReloadTime = 0;
-                return 0;
-            }
-
             int fullDamage = 0;
+            int shotsFired = 0;
             for (int i = 0; i < 2; i++)
             {
+                if (attacker.Ammunition.Count == 0)
+                {
+                    Console.WriteLine($"{attacker.Name}: нет снарядов для стрельбы!");
+                    break;
+                }
+
+                Ammo currentAmmo = attacker.Ammunition.First();
+
+                if (!CanUse(currentAmmo))
+                {
+                    Console.WriteLine($"{attacker.Name} - Осечка! Снаряд не подходит!");
+                    attacker.Ammunition.RemoveAt(0);
+                    attacker.Weight -= currentAmmo.AmmoWeight;
+                    continue;
+                }
+
                 if (Random.Shared.NextDouble() < Accuracy)
                 {
                     fullDamage += Random.Shared.Next(10, 16) + currentAmmo.Damage;
+                    Console.WriteLine($"{attacker.Name}: Выстрел {i + 1} попал!");
                 } else
                 {
                     Console.WriteLine($"{attacker.Name}: Выстрел {i + 1} промазал.");
                 }
+
+                attacker.Ammunition.RemoveAt(0);
+                attacker.Weight -= currentAmmo.AmmoWeight;
+                shotsFired++;
             }
 
-            attacker.Ammunition.RemoveAt(0);
-            attacker.Weight -= currentAmmo.AmmoWeight;
             ReloadTime = 1;
             return fullDamage;
         }

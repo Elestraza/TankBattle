@@ -12,7 +12,7 @@ namespace TankBattle.Classes
         public void LooseMsg()
         {
             if (IsDefeated)
-                Console.WriteLine("Комманда " + Name + " проиграла...");
+                Console.WriteLine($"Комманда {Name} проиграла...");
         }
     }
 }
