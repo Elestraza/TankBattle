@@ -44,29 +44,61 @@ namespace TankBattle.GameMaster
             Armors = [compositeArmor, dinamicArmor, homogeneous];
         }
 
-        public void GiveAmmo(Tank reciever, List<Ammo> ammoType, Int32 quantity)
+        public Weapon CreateRandomWeapon()
         {
-            ArmorPearcing armorPearcing = new();
-            Cumulative cumulative = new();
-            HighExplosive highExplosive = new();
-            List<Ammo> ammos = [armorPearcing, cumulative, highExplosive];
+            Type weaponType = Weapons[Random.Shared.Next(Weapons.Count)].GetType();
+            return (Weapon)Activator.CreateInstance(weaponType);
+        }
 
-            for (int i = 0; i < quantity; i++)
+        public Armor CreateRandomArmor()
+        {
+            Type armorType = Armors[Random.Shared.Next(Armors.Count)].GetType();
+            return (Armor)Activator.CreateInstance(armorType);
+        }
+
+        public Ammo CreateRandomAmmo()
+        {
+            Type ammoType = Ammos[Random.Shared.Next(Ammos.Count)].GetType();
+            return (Ammo)Activator.CreateInstance(ammoType);
+        }
+
+        public Tactic CreateRandomTactic()
+        {
+            Type tacticType = Tactics[Random.Shared.Next(Tactics.Count)].GetType();
+            return (Tactic)Activator.CreateInstance(tacticType);
+        }
+
+        public String GetRandomTeamName()
+        {
+            if (TeamNames.Count == 0)
+                return "Команда " + Random.Shared.Next(100, 999);
+
+            int index = Random.Shared.Next(TeamNames.Count);
+            String name = TeamNames[index];
+            TeamNames.RemoveAt(index);
+            return name;
+        }
+
+        public Int32 GiveAmmo(Tank receiver, List<Ammo> availableAmmo, Int32 quantity)
+        {
+            if (availableAmmo == null || availableAmmo.Count == 0)
             {
-                if (reciever.Weight < reciever.MaxWeight)
-                {
-                    Random index = new(ammos.Count);
-
-                    Ammo[] aliveEnemies = ammos.ToArray();
-                    Ammo selectedAmmo = aliveEnemies[index.Next(0, aliveEnemies.Length)];
-                    reciever.Ammunition.Add(selectedAmmo);
-                    reciever.Weight += selectedAmmo.AmmoWeight;
-                } else
-                {
-                    Console.WriteLine("Превышенна допустимая масса танка.");
-                    break;
-                }
+                Console.WriteLine("Нет доступных боеприпасов.");
+                return 0;
             }
+
+            Int32 added = 0;
+            for (Int32 i = 0; i < quantity; i++)
+            {
+                if (receiver.Weight >= receiver.MaxWeight)
+                    break;   // больше места нет
+
+                Ammo chosen = availableAmmo[Random.Shared.Next(availableAmmo.Count)];
+                receiver.Ammunition.Add(chosen);
+                receiver.Weight += chosen.AmmoWeight;
+                added++;
+            }
+            return added;
         }
     }
 }

@@ -9,19 +9,18 @@ namespace TankBattle.GameMaster
     {
         public void GetTeam(List<Tank> tanksList, Int32 teamCapacity, List<Team> teamsList, Int32 teamQuantity)
         {
-            for (int i = 0; i < teamQuantity; i++)
-            { 
+            TankFactory tankFactory = new TankFactory();
+            List<Tank> availableTanks = new List<Tank>(tanksList);
+            for (Int32 i = 0; i < teamQuantity; i++)
+            {
                 Team team = new Team();
-
+                availableTanks.Shuffle();
                 Random random = new Random();
-                Tank[] tanksArray = tanksList.ToArray();
-
-                for (int j = 0; j < teamCapacity; j++)
+                for (Int32 j = 0; j < teamCapacity && availableTanks.Count > 0; j++)
                 {
-                    tanksArray.Shuffle();
-                    Tank randomTank = tanksArray[random.Next(tanksArray.Length)];
-                    randomTank.Name = "Танк" + j;
-                    team.Tanks.Add(randomTank);
+                    Tank newTank = tankFactory.CreateRandomTank();
+                    newTank.Name = "Танк" + (i+1) + "-" + (j+1);
+                    team.Tanks.Add(newTank);
                 }
 
                 WhereHouse whereHouse = new WhereHouse();

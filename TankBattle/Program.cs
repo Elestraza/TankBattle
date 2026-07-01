@@ -1,24 +1,23 @@
-﻿using TankBattle.Ammunitions;
+﻿using System.Linq;
+using System.Text;
+using TankBattle.Ammunitions;
 using TankBattle.Armors;
 using TankBattle.Classes;
 using TankBattle.GameMaster;
 using TankBattle.Tactics;
 using TankBattle.Tanks;
 using TankBattle.Weapons;
-using Windows.Gaming.UI;
-using System.Linq;
 
 /*
     TODO: 
-        Создать возможность одновременной игры более чем двумя командами
-        Перенести логику в BattleSimulator.cs
-        Null DamageHolder внутри DamageList
+        Пока что все
 */
 
 internal class Program
 {
     private static void Main()
     {
+        Console.OutputEncoding = Encoding.UTF8; // Использование UTF8, т.к. не на всех машинах она используется в терминале по умолчанию (Пример: у меня на домашней машине)
         BattleSimulator battleSimulator = new BattleSimulator();
         WhereHouse whereHouse = new();
 
@@ -32,8 +31,25 @@ internal class Program
 
         List<Tank> tanksList = [heavyTank, mediumTank, lightTank];
         List<Team> teamsList = new();
+
         Int32 teamCapasity = Random.Shared.Next(1, 6);
-        Int32 teamQuantity = Convert.ToInt32(Console.ReadLine());
+        Int32 teamQuantity;
+
+        do
+        {
+            Console.Write("Введите количество команд (от 2 до 6): ");
+            if (!Int32.TryParse(Console.ReadLine(), out teamQuantity))
+            {
+                Console.WriteLine("Ошибка: введите число.");
+                continue;
+            }
+
+            if (teamQuantity < 2 || teamQuantity > 6)
+            {
+                Console.WriteLine("Ошибка: количество команд должно быть от 2 до 6.");
+            }
+        } while (teamQuantity < 2 || teamQuantity > 6);
+
         teamCreator.GetTeam(tanksList, teamCapasity, teamsList, teamQuantity);
         teamCreator.GearRandomizer(whereHouse.Weapons, whereHouse.Ammos, whereHouse.Armors, teamsList);
 
@@ -48,9 +64,8 @@ internal class Program
 
         Console.WriteLine("____________________БОЙ___________________");
         AliveTeams aliveTeams = new AliveTeams();
-        aliveTeams.Teams.AddRange(from team in teamsList.Where(t => !t.IsDefeated)
-                            select team);
-        Console.WriteLine(aliveTeams.Teams);
+        aliveTeams.Teams.AddRange(teamsList.Where(t => !t.IsDefeated));
+        //Console.WriteLine(aliveTeams.Teams);
         battleSimulator.Game(aliveTeams);
     }
 }

@@ -17,12 +17,9 @@ namespace TankBattle.Armors
             {
                 return (Int32)(damage * 0.8f);
             }
-            if (ammo is Cumulative) // Если Комулятивный снаряд
+            if (ammo is Cumulative && Random.Shared.NextDouble() < 0.6f) // 60% шанс отразить
             {
-                if (Random.Shared.NextDouble() < 0.6f) // 60% шанс отразить
-                {
-                    return 0;
-                }
+                return 0;
             }
             return damage; // Полный урон, если Бронебойный снаряд
         }

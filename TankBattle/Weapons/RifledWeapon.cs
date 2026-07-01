@@ -5,7 +5,7 @@ namespace TankBattle.Weapons
 {
     class RifledWeapon : Weapon // Нарезное оружие
     {
-        public Double Accuracy => Accuracy + (Accuracy * 0.10f);
+        public override Double Accuracy => base.Accuracy + (base.Accuracy * 0.10f);
 
         public override int Shoot(Tank attacker, Double Accuracy)
         {

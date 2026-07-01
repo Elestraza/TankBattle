@@ -20,8 +20,7 @@ namespace TankBattle.Classes
         public Armor Armor { get; set; }
         public Weapon Weapons { get; set; }
         public List<Ammo> Ammunition { get; set; } = new();
-        public Int32 MaxAmmo { get; protected set; }
-        public Int32 CurrentAmmo { get; set; }
+        public Int32 CurrentAmmo => Ammunition.Count;
 
         public Int32 GunsQuantity { get; protected set; }
 
@@ -51,7 +50,9 @@ namespace TankBattle.Classes
         public void RecieveAmmo()
         {
             WhereHouse inventory = new();
-            inventory.GiveAmmo(this, Ammunition, (MaxAmmo - CurrentAmmo));
+            Int32 added = inventory.GiveAmmo(this, inventory.Ammos, int.MaxValue);
+            if (added == 0)
+                Console.WriteLine(Name + " полностью заряжен.");
         }
     }
 }

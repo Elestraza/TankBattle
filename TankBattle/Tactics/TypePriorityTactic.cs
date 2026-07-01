@@ -16,7 +16,7 @@ namespace TankBattle.Tactics
          */
         public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
-            int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
+            //int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
             if (attacker is HeavyTank)
             {
                 try
@@ -43,9 +43,8 @@ namespace TankBattle.Tactics
                     Console.WriteLine(attacker.Name + " не нашел цель.");
                 }
             }
-            // if attacker is LightTank
-            Random index = new(enemies.Count);
 
+            Random index = new(enemies.Count);
             Tank[] aliveEnemies = enemies.Where(t => t.IsAlive).ToArray();
             var rndEnemy = aliveEnemies[index.Next(0, aliveEnemies.Length)];
             Console.WriteLine(attacker.Name + " атакует Танк " + rndEnemy.Name);

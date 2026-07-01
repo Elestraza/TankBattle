@@ -13,10 +13,6 @@ namespace TankBattle.Tactics
 
             Tank[] aliveEnemies = enemies.Where(t => t.IsAlive).ToArray();
             return aliveEnemies[index.Next(0, aliveEnemies.Length)];
-            
-           
-            //.HitRegister(damage, attacker.Ammunition[0]);
-            //Console.WriteLine("Танк " + attacker.Name + " атакует Танк " + randomTank.Name);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TankBattle.Tactics
     {
         public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
-            int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
+            //int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
 
             int targetId = 0;
             foreach (Tank tank in enemies.Where(t => t.IsAlive))

@@ -4,7 +4,6 @@ using System.Text;
 
 namespace TankBattle.Classes
 {
-    
     abstract class Ammo
     {
         public Int32 Damage { get; protected set; }

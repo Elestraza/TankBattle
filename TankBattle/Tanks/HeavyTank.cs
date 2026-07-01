@@ -1,6 +1,5 @@
 ﻿
 using TankBattle.Classes;
-using Windows.UI.Text;
 
 namespace TankBattle.Tanks
 {

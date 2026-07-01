@@ -15,7 +15,7 @@ namespace TankBattle.GameMaster
         {
             DamageCalculations damageCalculations = new DamageCalculations();
             Int32 roundCounter = 1;
-            while (aliveTeams.Teams.Count > 0)
+            while (aliveTeams.Teams.Count > 1)
             {
                 DamageHolder damageHolder = new DamageHolder();
                 List<DamageHolder> damageList = new List<DamageHolder>();
@@ -24,20 +24,20 @@ namespace TankBattle.GameMaster
                 {
                     foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
                     {
+                        
                         Console.Write(team.Name + " ");
-                        damageCalculations.Attack(tank, team.Tanks, team, damageHolder);
+                        damageHolder = damageCalculations.Attack(tank, team.Tanks, team);
                         //damageList.Add(damageCalculations.Attack(tank, team1.Tanks, team2));
+                        if (damageHolder != null)
+                            damageList.Add(damageHolder);
                     }
 
                 }
                 Console.WriteLine("___________________УРОН___________________");
-                if (damageHolder != null)
-                    damageList.Add(damageHolder);
-                damageCalculations.ApplyDamage(damageList);
 
-                //var deadTeam = aliveTeams.Teams.Where(t => t.IsDefeated);
-                //aliveTeams.Teams.Remove(deadTeam);
-                
+                damageCalculations.ApplyDamage(damageList);
+                aliveTeams.Teams.RemoveAll(t => t.IsDefeated);
+
                 Console.WriteLine("__________________________________________");
                 roundCounter++;
             }

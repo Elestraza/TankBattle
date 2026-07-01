@@ -6,7 +6,7 @@ namespace TankBattle.Classes
 {
     abstract class Weapon
     {
-        public Double Accuracy => 0.65f;
+        public virtual Double Accuracy => 0.65f;
         public Int32 ReloadTime { get; set; }
         public abstract int Shoot(Tank attacker, Double Accuracy);
         public abstract Boolean CanUse(Ammo ammo);
