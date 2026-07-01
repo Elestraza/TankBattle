@@ -25,7 +25,9 @@ namespace TankBattle.Tactics
                 return aliveEnemies[index.Next(0, aliveEnemies.Length)];
 
             }
-            return enemies.Where(t => t.IsTarget && t.IsAlive == true).First();
+            var enemy = enemies.Where(t => t.IsTarget && t.IsAlive == true).First();
+            Console.WriteLine($"{attacker.Name} атакует Танк {enemy.Name}");
+            return enemy; 
         }
     }
 }
