@@ -12,9 +12,9 @@ namespace TankBattle.GameMaster
 {
     class WhereHouse
     {
-        public List<Weapon> Weapons { get; set; } = new(); // [autoWeapon, rifledWeapon, smoothBarrelWeapon];
-        public List<Ammo> Ammos { get; set; } = new(); // [armorPearcing, cumulative, highExplosive];
-        public List<Armor> Armors { get; set; } = new(); // [compositeArmor, dinamicArmor, homogeneous];
+        public List<Weapon> Weapons { get; set; } = new();
+        public List<Ammo> Ammos { get; set; } = new();
+        public List<Armor> Armors { get; set; } = new();
         public List<Tactic> Tactics { get; set; } = new();
         public List<String> TeamNames { get; set; } = new();
         public WhereHouse() 
@@ -31,13 +31,13 @@ namespace TankBattle.GameMaster
             DinamicArmor dinamicArmor = new();
             RolledHomogeneous homogeneous = new();
 
-            CaptainOrderTactic captainOrderTactic = new(); // Тестовый вариант
+            CaptainOrderTactic captainOrderTactic = new();
             HeathiestEnemyTactic heathiestEnemyTactic = new();
             PursuitTactic pursuitTactic = new();
             TypePriorityTactic typePriorityTactic = new();
             WeakestEnemyTactic weakestEnemyTactic = new();
-            Tactics = [captainOrderTactic, heathiestEnemyTactic, pursuitTactic, typePriorityTactic, weakestEnemyTactic];
 
+            Tactics = [captainOrderTactic, heathiestEnemyTactic, pursuitTactic, typePriorityTactic, weakestEnemyTactic];
             TeamNames = ["СССР", "США", "Китай", "Япония", "Парагвай", "Британия"];
             Weapons = [autoWeapon, rifledWeapon, smoothBarrelWeapon];
             Ammos = [armorPearcing, cumulative, highExplosive];
