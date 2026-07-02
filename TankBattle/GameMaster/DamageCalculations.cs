@@ -16,7 +16,7 @@ namespace TankBattle.GameMaster
             foreach (var damage in damageList)
             {
                 if (damage?.Reciever == null)
-                    continue;   // skip invalid entries
+                    continue;
 
                 if (!damage.Reciever.IsAlive || damage.RecievingDamage == 0)
                 {
