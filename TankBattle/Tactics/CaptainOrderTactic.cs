@@ -12,7 +12,7 @@ namespace TankBattle.Tactics
             Random index = new(enemies.Count);
 
             Tank[] aliveEnemies = enemies.Where(t => t.IsAlive).ToArray();
-            var enemy = aliveEnemies[index.Next(0, aliveEnemies.Length-1)];
+            var enemy = aliveEnemies[index.Next(0, aliveEnemies.Length)];
             Console.WriteLine($"{attacker.Name} атакует {enemy.Name}");
             return enemy;
         }
