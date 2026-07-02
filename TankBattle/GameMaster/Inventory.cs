@@ -46,16 +46,21 @@ namespace TankBattle.GameMaster
 
         public Weapon GetRandomWeapon()
         {
-            Type weaponType = Weapons[Random.Shared.Next(Weapons.Count)].GetType();
-            return (Weapon)Activator.CreateInstance(weaponType);
+            Random index = new(Weapons.Count);
+            Weapon[] arrayedElements = Weapons.ToArray();
+            Weapons.Shuffle();
+            Weapon randomWeapon = arrayedElements[index.Next(0, arrayedElements.Length)];
+            return randomWeapon;
         }
 
         public Armor GetRandomArmor()
         {
-            Type armorType = Armors[Random.Shared.Next(Armors.Count)].GetType();
-            return (Armor)Activator.CreateInstance(armorType);
+            Random index = new(Armors.Count);
+            Armor[] arrayedElements = Armors.ToArray();
+            Armors.Shuffle();
+            Armor randomArmor = arrayedElements[index.Next(0, arrayedElements.Length)];
+            return randomArmor;
         }
-
         public Tactic GetRandomTactic()
         {
             Type tacticType = Tactics[Random.Shared.Next(Tactics.Count)].GetType();
