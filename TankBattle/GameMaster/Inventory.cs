@@ -70,9 +70,6 @@ namespace TankBattle.GameMaster
 
         public String GetRandomTeamName()
         {
-            if (TeamNames.Count == 0)
-                return $"Команда {Random.Shared.Next(100, 999)}";
-
             int index = Random.Shared.Next(TeamNames.Count);
             String name = TeamNames[index];
             TeamNames.RemoveAt(index);
