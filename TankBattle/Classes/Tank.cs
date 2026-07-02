@@ -11,7 +11,7 @@ namespace TankBattle.Classes
     abstract class Tank
     {
         public String Name { get; set; }
-        public Double MaxHP { get; protected set; }
+        public Int32 MaxHP { get; protected set; }
         public Double HP { get; set; }
         public Int32 MaxWeight { get; protected set; }
         public Int32 Weight { get; set; }

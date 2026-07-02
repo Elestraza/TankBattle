@@ -21,7 +21,7 @@ namespace TankBattle.Tactics
                 try
                 {
                     var enemy = enemies.Where(t => t.IsAlive && t is MediumTank).First();
-                    Console.WriteLine($"{attacker.Name} атакует Танк {enemy.Name}");
+                    Console.WriteLine($"{attacker.Name} атакует {enemy.Name}");
                     return enemy;
                 } catch
                 {
@@ -33,7 +33,7 @@ namespace TankBattle.Tactics
                 try
                 {
                     var enemy = enemies.Where(t => t.IsAlive && t is LightTank).First();
-                    Console.WriteLine($"{attacker.Name} атакует Танк {enemy.Name}");
+                    Console.WriteLine($"{attacker.Name} атакует {enemy.Name}");
                     return enemy;
                 } catch
                 {
@@ -44,7 +44,7 @@ namespace TankBattle.Tactics
             Random index = new(enemies.Count);
             Tank[] aliveEnemies = enemies.Where(t => t.IsAlive).ToArray();
             var rndEnemy = aliveEnemies[index.Next(0, aliveEnemies.Length)];
-            Console.WriteLine($"{attacker.Name} атакует Танк {rndEnemy.Name}");
+            Console.WriteLine($"{attacker.Name} атакует {rndEnemy.Name}");
             return rndEnemy;
         }
     }

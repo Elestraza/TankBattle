@@ -8,7 +8,7 @@ namespace TankBattle.Tanks
         public LightTank()
         {
             TankType = "Легкий танк";
-            MaxHP = 400f;
+            MaxHP = 400;
             HP = 400f;
             DodgeChance = 0.15f;
             MaxWeight = 5000;

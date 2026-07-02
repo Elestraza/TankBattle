@@ -4,6 +4,7 @@ namespace TankBattle.Classes
 {
     class Team
     {
+        public int Id { get; set; }
         public String Name { get; set; }
         public List<Tank> Tanks { get; set; } = [];
         public Tactic Strategy { get; set; }

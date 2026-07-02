@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TankBattle.Classes;
@@ -18,19 +19,25 @@ namespace TankBattle.GameMaster
         }
         public void Game(AliveTeams aliveTeams)
         {
-            DamageCalculations damageCalculations = new DamageCalculations();
+            DamageCalculations damageCalculations = new();
             Int32 roundCounter = 1;
+            Console.WriteLine("____________________БОЙ___________________");
             while (aliveTeams.Teams.Count > 1)
             {
-                DamageHolder damageHolder = new DamageHolder();
-                List<DamageHolder> damageList = new List<DamageHolder>();
+                DamageHolder damageHolder = new();
+                List<DamageHolder> damageList = new();
+                List<Team> atackingTeam = new List<Team>();
+
                 Console.WriteLine($"___________________Ход {roundCounter}__________________");
                 foreach (Team team in aliveTeams.Teams)
                 {
+                    var enemies = aliveTeams.Teams.Where(t => t != team).SelectMany(t => t.Tanks).ToList(); // список врагов
+
+                    //Console.WriteLine($"__________Ход команды {team.Name} _________");
                     foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
                     {
-                        Console.WriteLine($"{team.Name} ");
-                        damageHolder = damageCalculations.Attack(tank, team.Tanks, team);
+                        var index = team.Tanks.IndexOf(tank);
+                        damageHolder = damageCalculations.Attack(tank, enemies, team);
                         if (damageHolder != null)
                             damageList.Add(damageHolder);
                     }
@@ -40,8 +47,6 @@ namespace TankBattle.GameMaster
 
                 damageCalculations.ApplyDamage(damageList);
                 aliveTeams.Teams.RemoveAll(t => t.IsDefeated);
-
-                Console.WriteLine("__________________________________________");
                 roundCounter++;
             }
             Console.WriteLine(GameOver(aliveTeams.Teams));

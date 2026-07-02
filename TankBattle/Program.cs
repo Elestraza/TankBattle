@@ -10,7 +10,8 @@ using TankBattle.Weapons;
 
 /*
     TODO: 
-        Пока что все
+        Танк атакует сам себя и союзников: 
+            (Танк  1 - 1 атакует Танк Танк  1 - 1)
 */
 
 internal class Program
@@ -62,7 +63,7 @@ internal class Program
             }
         }
 
-        Console.WriteLine("____________________БОЙ___________________");
+        
         AliveTeams aliveTeams = new AliveTeams();
         aliveTeams.Teams.AddRange(teamsList.Where(t => !t.IsDefeated));
         //Console.WriteLine(aliveTeams.Teams);

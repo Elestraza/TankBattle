@@ -19,14 +19,14 @@ namespace TankBattle.Tactics
             }
             if (targetId > 0)
             {
-                Random index = new(enemies.Count);
-
                 Tank[] aliveEnemies = enemies.Where(t => t.IsAlive && t.IsTarget == false).ToArray();
-                return aliveEnemies[index.Next(0, aliveEnemies.Length)];
+                var randomEnemyFlag = aliveEnemies[0];
+                randomEnemyFlag.IsTarget = true;
+                return randomEnemyFlag;
 
             }
             var enemy = enemies.Where(t => t.IsTarget && t.IsAlive == true).First();
-            Console.WriteLine($"{attacker.Name} атакует Танк {enemy.Name}");
+            Console.WriteLine($"{attacker.Name} атакует {enemy.Name}");
             return enemy; 
         }
     }

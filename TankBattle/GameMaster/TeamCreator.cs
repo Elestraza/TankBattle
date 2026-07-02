@@ -27,7 +27,7 @@ namespace TankBattle.GameMaster
 
                 team.Strategy = whereHouse.GetRandomTactic();
                 team.Name = whereHouse.GetRandomTeamName();
-
+                team.Id += 1;
                 teamsList.Add(team);
             }
         }

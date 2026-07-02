@@ -56,12 +56,6 @@ namespace TankBattle.GameMaster
             return (Armor)Activator.CreateInstance(armorType);
         }
 
-        public Ammo GetRandomAmmo()
-        {
-            Type ammoType = Ammos[Random.Shared.Next(Ammos.Count)].GetType();
-            return (Ammo)Activator.CreateInstance(ammoType);
-        }
-
         public Tactic GetRandomTactic()
         {
             Type tacticType = Tactics[Random.Shared.Next(Tactics.Count)].GetType();

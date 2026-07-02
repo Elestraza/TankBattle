@@ -8,9 +8,8 @@ namespace TankBattle.Tactics
     {
         public override Tank SelectTarget(Tank attacker, List<Tank> enemies)
         {
-            
             var enemy = enemies.Where(t => t.IsAlive).OrderBy(t => t.HP).First();
-            Console.WriteLine($"{attacker.Name} атакует Танк {enemy.Name}");
+            Console.WriteLine($"{attacker.Name} атакует {enemy.Name}");
             return enemy;
         }
     }
