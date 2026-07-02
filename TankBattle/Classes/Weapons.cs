@@ -8,7 +8,7 @@ namespace TankBattle.Classes
     {
         public virtual Double Accuracy => 0.65f;
         public Int32 ReloadTime { get; set; }
-        public abstract int Shoot(Tank attacker, Double Accuracy);
+        public abstract Double Shoot(Tank attacker, Double Accuracy);
         public abstract Boolean CanUse(Ammo ammo);
         /*
             Нарезное - высокая точность (+10% к шансу попадания), урон 20-30;

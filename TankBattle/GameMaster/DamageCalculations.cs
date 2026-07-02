@@ -46,7 +46,7 @@ namespace TankBattle.GameMaster
             }
 
             Ammo usedAmmo = attacker.Ammunition.First();
-            int damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
+            Double damage = attacker.Weapons.Shoot(attacker, attacker.Weapons.Accuracy);
 
             return new DamageHolder
             {

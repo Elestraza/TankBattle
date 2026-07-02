@@ -7,7 +7,7 @@ namespace TankBattle.Weapons
     {
         public override Double Accuracy => base.Accuracy + (base.Accuracy * 0.10f);
 
-        public override int Shoot(Tank attacker, Double Accuracy)
+        public override Double Shoot(Tank attacker, Double Accuracy)
         {
             if (Random.Shared.NextDouble() > Accuracy)
             { 

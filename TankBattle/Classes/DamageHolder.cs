@@ -8,7 +8,7 @@ namespace TankBattle.Classes
     {
         public Tank Attacker { get; set; }
         public Tank Reciever { get; set; }
-        public Int32 RecievingDamage { get; set; }
+        public Double RecievingDamage { get; set; }
         public Ammo AttackerAmmo { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace TankBattle.Weapons
             ReloadTime = 1;
         }
 
-        public override int Shoot(Tank attacker, double Accuracy)
+        public override Double Shoot(Tank attacker, Double Accuracy)
         {
             if (attacker.Ammunition.Count == 0)
             {
@@ -19,9 +19,9 @@ namespace TankBattle.Weapons
                 return 0;
             }
 
-            int fullDamage = 0;
-            int shotsFired = 0;
-            for (int i = 0; i < 2; i++)
+            Double fullDamage = 0;
+            Int32 shotsFired = 0;
+            for (Int32 i = 0; i < 2; i++)
             {
                 if (attacker.Ammunition.Count == 0)
                 {

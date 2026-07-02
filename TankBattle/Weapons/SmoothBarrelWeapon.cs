@@ -6,7 +6,7 @@ namespace TankBattle.Weapons
     class SmoothBarrelWeapon : Weapon // Гладкоствольное оружие 
     {
         public override Double Accuracy => base.Accuracy;
-        public override int Shoot(Tank attacker, Double Accuracy)
+        public override Double Shoot(Tank attacker, Double Accuracy)
         {
             if (Random.Shared.NextDouble() > Accuracy)
             {

@@ -29,7 +29,7 @@ namespace TankBattle.GameMaster
                 {
                     foreach (Tank tank in team.Tanks.Where(t => t.IsAlive))
                     {
-                        Console.Write($"{team.Name} ");
+                        Console.WriteLine($"{team.Name} ");
                         damageHolder = damageCalculations.Attack(tank, team.Tanks, team);
                         if (damageHolder != null)
                             damageList.Add(damageHolder);
